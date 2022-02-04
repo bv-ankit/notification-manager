@@ -27,12 +27,12 @@ function display_admin_notice_2() {
 }
 add_action('admin_notices', 'display_admin_notice_2');
 
-
+/*
 //Type 3 
 echo '<div class="notice notice-success is-dismissible">';
 echo '<p>Echoing!!</p>';
 echo '</div>';
-
+*/
 
 //Type 4: One-Off Admin Notice - Timer Based
 function set_admin_notice_transient() {
@@ -100,5 +100,43 @@ add_action( 'admin_notices', 'display_admin_notice_6' );
 
 
 
-?>
+//-------------TRYING SOMETHING------------
+add_action('admin_enqueue_scripts', '_enq_scripts');
+function _enq_scripts(){
+	wp_enqueue_script( 'show_data_js', plugin_dir_url( __FILE__ ) . 'js/data_notices.js' );
+}
 
+
+function my_plugin_ajax_store() {
+    $data = $_POST['whatever'];
+    /*
+    global $wpdb; // this is how you get access to the database
+    $wpdb->insert("wp_plugin_table", array(
+        "whatever" => $whatever_data,
+    ));
+    */
+    echo $data;
+    wp_die(); // this is required to terminate immediately and return a proper response
+}
+
+add_action( 'wp_ajax_my_plugin_ajax_store', 'my_plugin_ajax_store' );
+
+
+/*
+//TO add notification icon on admin-bar
+add_action( 'admin_bar_menu', 'custom_wp_toolbar_link', 101 );
+ 
+function custom_wp_toolbar_link( $wp_admin_bar ) {
+ 	$args = array(
+            'id' => 'james',
+            'title' => '<span class="ab-icon"></span><span class="ab-label">'.__( 'Notifications', 'some-textdomain' ).'</span>',
+            'href' => '#',
+            'meta' => array(
+                'target' => '_self',
+                'class' => 'james-link',
+                'title' => ''
+            )
+        );
+        $wp_admin_bar->add_node($args);
+}
+ */
