@@ -29,7 +29,7 @@ else
 		$noti_id = 0;
 		
 		//adding notices section to the toolbar
-		$wp_admin_bar->add_menu( array(
+		$wp_admin_bar->add_node( array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
 			'title' => 'Notices',
@@ -53,10 +53,11 @@ else
 				$wp_admin_bar->add_node(array(
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
-					'title' => '<div>'.$t[$x][$i]["data"].'</div>',
+					'title' => '<br><style> #wp-admin-bar-'.$noti_id.' * {height:auto !important;} </style><div style="color:white">'.$t[$x][$i]["data"].'</div>',
 				));
 			}
 		}
+		echo '<style> #wp-admin-bar-notification-manager-default{color:teal !important;} </style>';
 	}
 
 	add_action('init', 'nm_main');
