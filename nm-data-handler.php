@@ -21,8 +21,8 @@ else
 		$collection = $wp_filter['admin_notices'];
 		$notices[] = []; //errors array   : 0
 		$notices[] = []; //success array  : 1
-		$notices[] = []; //warning array     : 2
-		$notices[] = []; //info array  : 3
+		$notices[] = []; //warning array  : 2
+		$notices[] = []; //info array     : 3
 		$notices[] = []; //misc array     : 4
 		if(isset($collection))
 		{
@@ -66,7 +66,6 @@ else
 			}
 
 		}
-
 		update_option('noti_data',$notices);
 	}
 
