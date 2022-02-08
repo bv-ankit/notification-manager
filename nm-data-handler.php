@@ -24,7 +24,6 @@ else
 		$notices[] = []; //warning array     : 2
 		$notices[] = []; //info array  : 3
 		$notices[] = []; //misc array     : 4
-
 		if(isset($collection))
 		{
 			foreach($collection as $priority => $admin_notice_group)

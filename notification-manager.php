@@ -53,7 +53,7 @@ else
 				$wp_admin_bar->add_node(array(
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
-					'title' => '<br><style> #wp-admin-bar-'.$noti_id.' * {height:auto !important;} </style><div style="color:white">'.$t[$x][$i]["data"].'</div>',
+					'title' => '<style> #wp-admin-bar-'.$noti_id.' * {height:auto !important;} </style><div style="color:white;border:1px solid #3c434a;border-left-width:4px;padding: 							1px 12px;border-left-color:pink">'.$t[$x][$i]["data"].'</div>',
 				));
 			}
 		}
