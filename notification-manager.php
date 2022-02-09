@@ -64,11 +64,20 @@ else
 			for($i=0; $i<count($t[$x]); $i++)
 			{
 				$noti_id++;
-				$wp_admin_bar->add_node(array(
-					'id' => $noti_id,
-					'parent' => 'notification-manager',
-					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_style'</div>',
-				));
+				if ( $t[$x][$i]['dismis_type'] ) {
+					$wp_admin_bar->add_node(array(
+						'id' => $noti_id,
+						'parent' => 'notification-manager',
+						'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_style.'</div>',
+					));
+				}
+				else{
+					$wp_admin_bar->add_node(array(
+						'id' => $noti_id,
+						'parent' => 'notification-manager',
+						'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].'</div>',
+					));	
+				}
 			}
 		}
 		echo '<style>';
