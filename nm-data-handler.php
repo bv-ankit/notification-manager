@@ -40,9 +40,9 @@ else
 						//running regex and saving data
 						if ( false !== preg_match_all( $regexp, $output, $matches ) and count($matches[2]) != 0)
 						{
-							$type = 4;
 							for($i=0; $i<count($matches[2]); $i++)
-							{
+							{	
+								$type = 4;
 								if ( false !== preg_match_all( $class_regexp, $matches[1][$i], $class_values ) and count($class_values) != 0 )
 								{
 									//adding all the classes in a array
@@ -56,7 +56,7 @@ else
 									if(in_array("notice",$nclass))
 									{
 										$message = trim( strip_tags( $matches[2][$i], '<a>' ) );
-										$notices[$type][] = ['data'=>$message];
+										$notices[$type][] = ['data'=>$matches[2][$i]];
 									}
 								}
 							}

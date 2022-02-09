@@ -27,13 +27,13 @@ else
 	function nm_menu_setup($wp_admin_bar)
 	{
 		$noti_id = 0;
-		$a = ["#db3236", "#3cba54", "#4885ed", "#f4c20d", "while"];
+		$a = ["#db3236", "#3cba54", "#4885ed", "#f4c20d", "black"];
 		
 		//adding notices section to the toolbar
 		$wp_admin_bar->add_node( array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
-			'title' => 'Notices',
+			'title' => '<div style="text-align:right"> Notices </div>',
 			'href' => false,
 		));
 		
@@ -52,8 +52,6 @@ else
 			));
 		}
 
-		$sty1 = '<style> #wp-admin-bar-';
-		$sty2 = ' * {height:auto !important;padding:5px 12px !important;} </style>';
 		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:4px; border-left-color:';
 
 		// looping through all types of notices
@@ -66,11 +64,15 @@ else
 				$wp_admin_bar->add_node(array(
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
-					'title' => $sty1.$noti_id.$sty2.$notice_style.$a[$x].'">'.$t[$x][$i]["data"].'</div>',
+					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].'</div>',
 				));
 			}
 		}
-		echo '<style> #wp-admin-bar-notification-manager-default{background-color:white !important;}';
+		echo '<style>';
+		echo '.ab-sub-wrapper li *{height:auto !important; padding:4px 5px !important;}';
+		echo '.ab-sub-wrapper li {width:400px !important;}';
+		echo '.ab-item.ab-empty-item {white-space:unset !important;}';
+	        echo '#wp-admin-bar-notification-manager-default{background-color:white !important; box-shadow:0 2px 5px 3px rgb(0 0 0 / 20%) !important; overflow-y:auto !important; max-height:90vh !important;}';
 		echo '#wp-admin-bar-notification-manager-default a:link{color:#4885ed !important;}';
 	       	echo '#wp-admin-bar-notification-manager-default a:visited{color:#4885ed !important;}';
 	       	echo '#wp-admin-bar-notification-manager-default a:hover{color:#db3236 !important;} </style>';
