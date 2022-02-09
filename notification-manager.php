@@ -57,8 +57,8 @@ else
 			));
 		}
 
-		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:4px; border-left-color:';
-		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; padding: 12px 16px; transform: translate(0%, -50%);">&times;</span>';
+		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
+		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
 
 		// looping through all types of notices
 		for($x=0; $x<5; $x++)
@@ -75,14 +75,21 @@ else
 				));
 			}
 		}
-		echo '<style>';
-		echo '.ab-sub-wrapper #wp-admin-bar-notification-manager-default li *{height:auto !important; padding:4px 5px !important;}';
-		echo '.ab-sub-wrapper #wp-admin-bar-notification-manager-default li {width:25vw !important;}';
-		echo '.ab-item.ab-empty-item {white-space:unset !important;}';
-	        echo '#wp-admin-bar-notification-manager-default{background-color:white !important; box-shadow:0 2px 5px 3px rgb(0 0 0 / 20%) !important; overflow-y:auto !important; max-height:90vh !important;}';
-		echo '#wp-admin-bar-notification-manager-default a:link{color:#4885ed !important;}';
-	       	echo '#wp-admin-bar-notification-manager-default a:visited{color:#4885ed !important;}';
-	       	echo '#wp-admin-bar-notification-manager-default a:hover{color:#db3236 !important;} </style>';
+?>
+<style>
+span.close:hover{color:red !important;}
+#wp-admin-bar-notification-manager-default::-webkit-scrollbar-track{background-color: white;}
+#wp-admin-bar-notification-manager-default::-webkit-scrollbar{width: 7px; background-color: #808080;}
+#wp-admin-bar-notification-manager-default::-webkit-scrollbar-thumb{background-color: #808080;}
+.ab-sub-wrapper #wp-admin-bar-notification-manager-default li *{height:auto !important; padding:0px 5px 10px 5px !important;}
+.ab-sub-wrapper #wp-admin-bar-notification-manager-default li {width:25vw !important;}
+.ab-item.ab-empty-item {white-space:unset !important;}
+#wp-admin-bar-notification-manager-default{background-color:white !important; box-shadow:0 2px 5px 3px rgb(0 0 0 / 20%) !important; overflow-y:auto !important; max-height:80vh !important;}
+#wp-admin-bar-notification-manager-default a:link{color:#4885ed !important;}
+#wp-admin-bar-notification-manager-default a:visited{color:#4885ed !important;}
+#wp-admin-bar-notification-manager-default a:hover{color:#db3236 !important;}
+</style>
+<?php
 	}
 
 	add_action('init', 'nm_main');
