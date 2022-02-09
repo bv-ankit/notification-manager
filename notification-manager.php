@@ -21,7 +21,12 @@ else
 	{
 		//------------handle the case when require once fails
 		require_once('nm-data-handler.php');
+		add_action('admin_enqueue_scripts', 'enqueue_close_script');
 		add_action('admin_bar_menu', 'nm_menu_setup', 999);
+	}
+
+	function enqueue_close_script() {
+		wp_enqueue_script( 'close_item_js', plugin_dir_url(__FILE__) . 'js/close_item.js');
 	}
 
 	function nm_menu_setup($wp_admin_bar)
@@ -53,6 +58,7 @@ else
 		}
 
 		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:4px; border-left-color:';
+		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; padding: 12px 16px; transform: translate(0%, -50%);">&times;</span>';
 
 		// looping through all types of notices
 		for($x=0; $x<5; $x++)
@@ -60,11 +66,12 @@ else
 			//adding the notices to menu
 			for($i=0; $i<count($t[$x]); $i++)
 			{
+				$close_icon_status = $t[$x][$i]['dismis_type'] ? $close_icon_style : "";
 				$noti_id++;
 				$wp_admin_bar->add_node(array(
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
-					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].'</div>',
+					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_status.'</div>',
 				));
 			}
 		}

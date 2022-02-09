@@ -47,7 +47,7 @@ else
 								{
 									//adding all the classes in a array
 									$nclass = explode(" ", $class_values[1][0]);
-									
+									$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
 									//updating the type of notice if given
 									if(in_array("notice-error",$nclass)) $type = 0;
 									if(in_array("notice-success",$nclass)) $type = 1;
@@ -56,7 +56,7 @@ else
 									if(in_array("notice",$nclass))
 									{
 										$message = trim( strip_tags( $matches[2][$i], '<a>' ) );
-										$notices[$type][] = ['data'=>$matches[2][$i]];
+										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type];
 									}
 								}
 							}
