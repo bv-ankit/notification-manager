@@ -69,8 +69,8 @@ else
 			}
 		}
 		echo '<style>';
-		echo '.ab-sub-wrapper li *{height:auto !important; padding:4px 5px !important;}';
-		echo '.ab-sub-wrapper li {width:25vw !important;}';
+		echo '.ab-sub-wrapper #wp-admin-bar-notification-manager-default li *{height:auto !important; padding:4px 5px !important;}';
+		echo '.ab-sub-wrapper #wp-admin-bar-notification-manager-default li {width:25vw !important;}';
 		echo '.ab-item.ab-empty-item {white-space:unset !important;}';
 	        echo '#wp-admin-bar-notification-manager-default{background-color:white !important; box-shadow:0 2px 5px 3px rgb(0 0 0 / 20%) !important; overflow-y:auto !important; max-height:90vh !important;}';
 		echo '#wp-admin-bar-notification-manager-default a:link{color:#4885ed !important;}';
