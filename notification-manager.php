@@ -33,7 +33,7 @@ else
 	{
 		//--------------------setting all data to use
 		$noti_id = 0;
-		$a = ["#db3236", "#3cba54", "#dba617", "#f4c20d", "black"];
+		$a = ["#db3236", "#3cba54", "#f4c20d", "#4885ed", "black"];
 		$notice_style = '<div class="';
 		$notice_style2 = '" style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
 		$close_icon_style = '<span class="close_button" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
