@@ -31,11 +31,22 @@ else
 
 	function nm_menu_setup($wp_admin_bar)
 	{
+		//--------------------setting all data to use
 		$noti_id = 0;
 		$a = ["#db3236", "#3cba54", "#4885ed", "#f4c20d", "black"];
-		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
-                $close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
+		$notice_style = '<div class="';
+		$notice_style2 = '" style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
+		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
 
+		//------------handle the case when no data gets loaded
+                // 0:error, 1:success, 2:warning, 3:info, 4:misc
+                // for all n{0:data, 1:dismissable 2:classes}
+                $t = get_option('noti_data');
+
+
+
+
+		//-------------------- Showing all the data in menu
 		//adding notices section to the toolbar
 		$wp_admin_bar->add_node( array(
 			'id' => 'notification-manager',
@@ -61,13 +72,12 @@ else
 				$wp_admin_bar->add_node(array(
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
-					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_status.'</div>',
-					'meta' => array('class' => $t[$x][$i]['classes']),
+					'title' => $notice_style.$t[$x][$i]['classes'].$notice_style2.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_status.'</div>',
 				));
 			}
 		}
 
-		// handle the case when all notifications are dismissed and then nothing is left in the menu
+		//--------------------------- handle the case when all notifications are dismissed and then nothing is left in the menu
 		if($noti_id == 0)
 		{
 			$wp_admin_bar->add_node(array(
