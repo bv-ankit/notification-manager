@@ -32,7 +32,7 @@ else
 	function nm_menu_setup($wp_admin_bar)
 	{
 		$noti_id = 0;
-		$a = ["#db3236", "#3cba54", "#4885ed", "#f4c20d", "black"];
+		$a = ["#db3236", "#3cba54", "#dba617", "#f4c20d", "black"];
 		
 		//adding notices section to the toolbar
 		$wp_admin_bar->add_node( array(
