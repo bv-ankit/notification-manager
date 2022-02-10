@@ -33,32 +33,22 @@ else
 	{
 		$noti_id = 0;
 		$a = ["#db3236", "#3cba54", "#4885ed", "#f4c20d", "black"];
-		
+		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
+                $close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
+
 		//adding notices section to the toolbar
 		$wp_admin_bar->add_node( array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
 			'title' => '<div style="text-align:right"> Notices </div>',
 			'href' => false,
+			'meta' => array('onclick' => '{var x = document.getElementById("wp-admin-bar-notification-manager-default").parentNode; x.style.display = (x.style.display === "block") ? "" : "block";}'),
 		));
-		
-		//------------handle the case when no data gets loaded
-		//fetching all the data from wp_options
-		//$number_of_notifications = get_option('number_of_notifications');
-		
-		// 0:error, 1:success, 2:warning, 3:info, 4:misc
-		$t = get_option('noti_data');
-		if( (count($t[0]) + count($t[1]) + count($t[2]) + count($t[3])  + count($t[4])) == 0)
-		{
-			$wp_admin_bar->add_node(array(
-				'id' => 404,
-				'parent' => 'notification-manager',
-				'title' => '<div style="color:black"> Nothing to see here </div>',
-			));
-		}
 
-		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
-		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
+		//------------handle the case when no data gets loaded
+		// 0:error, 1:success, 2:warning, 3:info, 4:misc
+		// for all n{0:data, 1:dismissable 2:classes}
+		$t = get_option('noti_data');
 
 		// looping through all types of notices
 		for($x=0; $x<5; $x++)
@@ -72,8 +62,20 @@ else
 					'id' => $noti_id,
 					'parent' => 'notification-manager',
 					'title' => $notice_style.$a[$x].'">'.$t[$x][$i]["data"].$close_icon_status.'</div>',
+					'meta' => array('class' => $t[$x][$i]['classes']),
 				));
 			}
+		}
+
+		// handle the case when all notifications are dismissed and then nothing is left in the menu
+		if($noti_id == 0)
+		{
+			$wp_admin_bar->add_node(array(
+                                'id' => 404,
+                                'parent' => 'notification-manager',
+                                'title' => '<div style="color:black; height:17px !important;"><center> Nothing to see here </center></div>',
+                        ));
+
 		}
 ?>
 <style>
@@ -89,6 +91,7 @@ span.close:hover{color:red !important;}
 #wp-admin-bar-notification-manager-default a:visited{color:#4885ed !important;}
 #wp-admin-bar-notification-manager-default a:hover{color:#db3236 !important;}
 </style>
+
 <?php
 	}
 
