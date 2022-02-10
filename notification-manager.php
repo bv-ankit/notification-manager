@@ -39,9 +39,9 @@ else
 		$close_icon_style = '<span class="close_button" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
 
 		//------------handle the case when no data gets loaded
-                // 0:error, 1:success, 2:warning, 3:info, 4:misc
-                // for all n{0:data, 1:dismissable 2:classes}
-                $t = get_option('noti_data');
+		// 0:error, 1:success, 2:warning, 3:info, 4:misc
+		// for all n{0:data, 1:dismissable 2:classes}
+		$t = get_option('noti_data');
 
 
 		//-------------------- Showing all the data in menu
@@ -75,17 +75,11 @@ else
 				));
 			}
 		}
-
-		//--------------------------- handle the case when all notifications are dismissed and then nothing is left in the menu
-		if($noti_id == 0)
-		{
-			$wp_admin_bar->add_node(array(
-                                'id' => 404,
-                                'parent' => 'notification-manager',
-                                'title' => '<div style="color:black; height:17px !important;"><center> Nothing to see here </center></div>',
-                        ));
-
-		}
+		$wp_admin_bar->add_node(array(
+			'id' => 404,
+			'parent' => 'notification-manager',
+			'title' => '<div style="color:black; height:17px !important;"><center> ----------x----------  </center></div>',
+		));
 ?>
 <style>
 span.close_button:hover{color:red !important;}
