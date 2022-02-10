@@ -47,16 +47,18 @@ else
 								{
 									//adding all the classes in a array
 									$nclass = explode(" ", $class_values[1][0]);
-									$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
-									//updating the type of notice if given
-									if(in_array("notice-error",$nclass)) $type = 0;
-									if(in_array("notice-success",$nclass)) $type = 1;
-									if(in_array("notice-warning",$nclass)) $type = 2;
-									if(in_array("notice-info",$nclass)) $type = 3;
 									if(in_array("notice",$nclass))
-									{
+                                                                        {
+										unset($nclass[array_search("notice",$nclass,false)]);
+										$aclass = join(" ",$nclass);
+										$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
+										//updating the type of notice if given
+										if(in_array("notice-error",$nclass)) $type = 0;
+										if(in_array("notice-success",$nclass)) $type = 1;
+										if(in_array("notice-warning",$nclass)) $type = 2;
+										if(in_array("notice-info",$nclass)) $type = 3;
 										$message = trim( strip_tags( $matches[2][$i], '<a>' ) );
-										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type];
+										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type, 'classes'=>$aclass];
 									}
 								}
 							}
