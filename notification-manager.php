@@ -58,7 +58,7 @@ else
 		}
 
 		$notice_style = '<div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
-		$close_icon_style = '<span class="close" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
+		$close_icon_style = '<span class="close_button" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);">&times;</span>';
 
 		// looping through all types of notices
 		for($x=0; $x<5; $x++)
@@ -77,7 +77,7 @@ else
 		}
 ?>
 <style>
-span.close:hover{color:red !important;}
+span.close_button:hover{color:red !important;}
 #wp-admin-bar-notification-manager-default::-webkit-scrollbar-track{background-color: white;}
 #wp-admin-bar-notification-manager-default::-webkit-scrollbar{width: 7px; background-color: #808080;}
 #wp-admin-bar-notification-manager-default::-webkit-scrollbar-thumb{background-color: #808080;}
