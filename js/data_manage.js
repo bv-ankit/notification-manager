@@ -2,7 +2,7 @@ window.addEventListener('load', function ()
 	{
 		var base1 = '<li id="wp-admin-bar-';
 		var base2 = '"><div class="ab-item ab-empty-item"><div style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
-		var base3 = '<span class="close_button notice-dismiss" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);"></span></div><div></li>';
+		var base3 = '<span class="close_button notice-dismiss" style="cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);"></span></div></div></li>';
 		var exc = document.getElementById("wp-admin-bar-notification-manager-default");
 		var b_colors = ["#db3236", "#3cba54", "#f4c20d", "#4885ed", "black"];
 		var noti_id = 1;
@@ -37,6 +37,10 @@ window.addEventListener('load', function ()
 					f.push(i);
 					exc.innerHTML += base1+noti_id+base2+b_colors[0]+'">'+eles[i].innerHTML+temp;
 					noti_id++;
+					// ----------------- attach the default classes to these tags too
+					//var brr = eles[i].classList;
+					//brr.remove("notice");
+					//console.log(brr);
 				}
 			}
 		}
