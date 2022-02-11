@@ -10,8 +10,9 @@ else
 	function nm_data()
 	{
 		//hiding all the default notices
-		echo '<style> .notice{display:none;} </style>';
+		echo '<style> .notice{display:none;} .notice.notice-alt{display:"" !important;} .updated{display:none;} .error{display:none} </style>';
 		//------------ handle the case of direct showing notifications getting hidden
+		//------------ handle the case of showing the data on a smaller screen
 
 		//defining all the needed variables
 		global $wp_filter;
@@ -42,24 +43,54 @@ else
 						{
 							for($i=0; $i<count($matches[2]); $i++)
 							{	
-								$type = 4;
 								if ( false !== preg_match_all( $class_regexp, $matches[1][$i], $class_values ) and count($class_values) != 0 )
 								{
-									//adding all the classes in a array
-									$nclass = explode(" ", $class_values[1][0]);
+									$type = 4; // this is set as the default type (misc) for the notice
+									$nclass = explode(" ", $class_values[1][0]);  // array of all previous classes
+
+									//-------------- deal with all the notices which will act directly without adding themselves to admin_notices
+
 									if(in_array("notice",$nclass))
                                                                         {
-										unset($nclass[array_search("notice",$nclass,false)]);
-										$aclass = join(" ",$nclass);
+										// updating the class list
+										unset($nclass[array_search("notice",$nclass,false)]); // removing the class which will help us to hide all the remaining classes
+										$aclass = join(" ",$nclass);  // the array of updated classes
 										$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
+
 										//updating the type of notice if given
 										if(in_array("notice-error",$nclass)) $type = 0;
 										if(in_array("notice-success",$nclass)) $type = 1;
 										if(in_array("notice-warning",$nclass)) $type = 2;
 										if(in_array("notice-info",$nclass)) $type = 3;
-										$message = trim( strip_tags( $matches[2][$i], '<a>' ) );
+										
+										//$message = trim( strip_tags( $matches[2][$i], '<a>' ) );
 										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type, 'classes'=>$aclass];
 									}
+									/*
+									 * --------------------------- changes needed to fetch updated and error notices
+									elseif(in_array("error",$nclass))
+									{
+										//updating the class list
+										unset($nclass[array_search("error",$nclass,false)]);
+										$aclass = join(" ",$nclass);
+										$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
+										
+										$type = 0; // error type is set as 0
+
+										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type, 'classes'=>$aclass];
+									}
+									elseif(in_array("updated",$nclass))
+									{
+										//updating the class list
+										unset($nclass[array_search("updated",$nclass,false)]);
+										$aclass = join(" ",$nclass);
+										$dismis_type = in_array("is-dismissible",$nclass) ? true : false;
+
+										$type = 1; // updated type is set as success as 1
+
+										$notices[$type][] = ['data'=>$matches[2][$i], 'dismis_type'=>$dismis_type, 'classes'=>$aclass];
+									}
+									 */
 								}
 							}
 						}
