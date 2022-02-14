@@ -21,6 +21,10 @@ else
 	{
 		//------------handle the case when require once fails
 		require_once('nm-data-handler.php');
+		//<link rel="stylesheet" href="css/nm_admin_bar.css" type="text/css">
+?>
+
+<?php
 		wp_enqueue_script( 'show_notice_js', plugin_dir_url( __FILE__ ) . 'js/data_manage.js' );
 		add_action('admin_enqueue_scripts', 'enqueue_close_script');
 		add_action('admin_bar_menu', 'nm_menu_setup', 999);
@@ -95,8 +99,10 @@ span.close_button:hover{color:red !important;}
 #wp-admin-bar-notification-manager-default a:link{color:#4885ed !important;}
 #wp-admin-bar-notification-manager-default a:visited{color:#4885ed !important;}
 #wp-admin-bar-notification-manager-default a:hover{color:#db3236 !important;}
+.nm-drpdn{background-color:#F2F3F5;color:black;border:0px solid #3c434a;border-left-width:3px;padding:0px 25px 0px 5px !important;}
+.nm-close{cursor:pointer; position:absolute; top:50%; right:1%; font-size:x-large; color:#808080; transform: translate(0%, -50%);}
+.nm-reset{all:unset !important;}
 </style>
-
 <?php
 	}
 
