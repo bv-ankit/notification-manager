@@ -1,5 +1,17 @@
 window.addEventListener('load', function () 
 	{
+		//var nm_notice_data = document.querySelectorAll(".notice");
+		//var nm_updated_data =  document.querySelectorAll(".updated");
+		//var nm_error_data = document.querySelectorAll(".error");
+		//console.log(nm_notice_data);
+		//console.log(nm_updated_data);
+		//console.log(nm_error_data);
+
+		// classes - hidden {X}, notice {X}, updated {X}, error {X}
+
+
+		//console.log(nm_notice_data[1]);
+
 		var base1 = '<li id="wp-admin-bar-';
 		var base2 = '"><div class="ab-item ab-empty-item"><div ';
 		var baseo = ' style="background-color:#F2F3F5; color:black; border:0px solid #3c434a; border-left-width:3px; padding:0px 25px 0px 5px !important; border-left-color:';
@@ -34,6 +46,7 @@ window.addEventListener('load', function ()
 				temp = eles[i].classList.contains("is-dismissible") ? base3 : '';
 				if(eles[i].classList.contains(t4[0]))
 				{
+					
 					/*
 					var brr = eles[i].classList;
                                         //brr.remove("notice");
@@ -45,6 +58,7 @@ window.addEventListener('load', function ()
 					var abc = `<span class="close_button notice-dismiss nm-close"></span></div></div></li>`;
 					console.log(newNode);
 					*/
+
 					f.push(i);
 					exc.innerHTML += base1+noti_id+base2+baseo+b_colors[0]+'">'+eles[i].innerHTML+temp;
 					noti_id++;
@@ -93,6 +107,5 @@ window.addEventListener('load', function ()
 				noti_id++;
 			}
 		}
-
 }
 )
