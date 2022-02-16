@@ -21,6 +21,10 @@
 #nm_container h3{width: 100%;text-align: center;}
 #nm_display_notification_number{display: inline-block;vertical-align: text-bottom;box-sizing: border-box;margin: 1px 0 -1px 2px;padding: 0 5px 0 4px;min-width: 18px;height: 18px;border-radius: 50%;background-color: #ca4a1f;color: #fff;font-size: 11px;line-height: 1.6;text-align: center;}
 
+div[id^="all_nm_"]{
+	padding-left: 5px;
+}
+
 
 .notice {visibility: hidden;}
 .updated {visibility: hidden;}

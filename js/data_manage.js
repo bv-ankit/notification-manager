@@ -12,12 +12,14 @@ window.addEventListener('load', function ()
 				document.querySelector('#nm_container h3').remove();
 				toggle = 1;
 			}
+
+			// console.log(nm_notice.hasAttribute("aria-hidden"));
 			
-			var nm_container_div = '<div id="nm_'+noti_id+'"></div><br>';
+			var nm_container_div = '<div id="all_nm_'+noti_id+'"></div><br>';
 			// nm_container.appendChild(nm_container_div);
 			nm_container.innerHTML += nm_container_div;
 
-			var temp = '#nm_'+noti_id;
+			var temp = '#all_nm_'+noti_id;
 			var nm_box = document.querySelector(temp);
 			nm_notice.classList.add("inline");
 			nm_notice.style.visibility = "unset";
@@ -29,7 +31,7 @@ window.addEventListener('load', function ()
 		{
 			for(var i=0; i<nm_all_notice.length; i++)
 			{
-				if(nm_all_notice[i].classList.contains('hidden') || nm_all_notice[i].hasAttribute('aria-hidden'))
+				if(nm_all_notice[i].classList.contains('hidden') || nm_all_notice[i].hasAttribute("aria-hidden"))
 				{
 					//these notices will not be added to the menu
 					continue;
@@ -70,14 +72,5 @@ window.addEventListener('load', function ()
 			}
 		}
 
-		// var fix1 = document.querySelectorAll(".notice");
-		// var fix2 = document.querySelectorAll(".error");
-		// var fix3 = document.querySelectorAll(".updated");
-		// for( var i=0; i<fix1.length; i++)
-		// {fix1[i].style.visibility = "unset";}
-		// for( var i=0; i<fix2.length; i++)
-		// {fix2[i].style.visibility = "unset";}
-		// for( var i=0; i<fix3.length; i++)
-		// {fix3[i].style.visibility = "unset";}
 	}
 )
