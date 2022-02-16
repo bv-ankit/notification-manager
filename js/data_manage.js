@@ -4,7 +4,6 @@ window.addEventListener('load', function ()
 		var noti_id = 1;
 		var nm_container = document.querySelector("#nm_container");
 
-		//error, notice-error
 		function nm_add_to_container(nm_notice)
 		{
 			if(toggle == 0)
@@ -31,7 +30,6 @@ window.addEventListener('load', function ()
 			{
 				if(nm_all_notice[i].classList.contains('hidden') || nm_all_notice[i].hasAttribute("aria-hidden"))
 				{
-					//these notices will not be added to the menu
 					continue;
 				}
 				else

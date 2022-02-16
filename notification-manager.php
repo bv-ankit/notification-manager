@@ -19,7 +19,6 @@ else
 {
 	function nm_main()
 	{
-		//------------handle the case when require once fails
 		wp_register_style( 'nm_admin_bar',plugin_dir_url(__FILE__) . 'css/nm_admin_bar.css' );
 		wp_enqueue_style( 'nm_admin_bar' );
 		add_action('admin_bar_menu', 'nm_menu_setup', 999);
@@ -33,8 +32,6 @@ else
 
 	function nm_menu_setup($wp_admin_bar)
 	{
-		// added a notices menu to admin-bar
-
 		$wp_admin_bar->add_node(
 			array(
 			'id' => 'notification-manager',
@@ -44,16 +41,7 @@ else
 			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}'),
 			)
 		);
-		
-		?>
-		
-		<div id="nm_container">
-        	<h3> There is no notification to display </h3>
-		</div>
-
-		<?php
-
-		
+		echo '<div id="nm_container"><h3> There is no notification to display </h3></div>';
 	}
 
 	add_action('init', 'nm_main');
