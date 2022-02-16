@@ -22,16 +22,14 @@ else
 {
 	function nm_main()
 	{
-		wp_enqueue_style( 'nm_menu',plugin_dir_url(__FILE__) . 'css/nm_menu.min.css' );
-
 		add_action('admin_bar_menu', 'nm_create_menu', 999);
-
 		add_action('admin_enqueue_scripts', 'nm_enqueue_notice_data');
 	}
 
 	function nm_enqueue_notice_data()
 	{
-		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.min.js', [], false, true );
+		wp_enqueue_style('nm_menu',plugin_dir_url(__FILE__) . 'css/nm_menu.min.css');
+		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
 	}
 
 	function nm_create_menu($wp_admin_bar)
@@ -40,7 +38,7 @@ else
 			array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
-			'title' => '<div style="text-align:right"> Notices </div>',
+			'title' => '<div style="text-align:right"> Notifications <!--Notices--> </div>',
 			'href' => false,
 			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}'),
 			)

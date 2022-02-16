@@ -1,8 +1,8 @@
 window.addEventListener('load', function () 
 	{
-		var zero_notices_present = true;
-		var notices_id = 1;
-		var nm_container = document.querySelector("#nm_container");
+		let zero_notices_present = true;
+		let notices_id = 1;
+		let nm_container = document.querySelector("#nm_container");
 
 		function nm_add_to_container(nm_notice)
 		{
@@ -14,50 +14,45 @@ window.addEventListener('load', function ()
 			
 			nm_container.innerHTML += '<div id="all_nm_'+notices_id+'"></div><br>';
 
-			var nm_notice_div_id = '#all_nm_'+notices_id;
-			var nm_div_box = document.querySelector(nm_notice_div_id);
+			let nm_notice_div_id = '#all_nm_' + notices_id;
+			let nm_div_box = document.querySelector(nm_notice_div_id);
 
-			nm_notice.classList.add("inline","notice-alt");
+			nm_notice.classList.add("inline","notice-alt","nm-common");
 			nm_notice.style.visibility = "unset";
 			
 			nm_div_box.appendChild(nm_notice);
 			notices_id++;
 		}
 
-		function nm_sanitize(nm_notices)
+		function nm_sanitize_and_proceed(nm_notices)
 		{
-			for(var i=0; i<nm_notices.length; i++)
+			for(let notice_number=0; notice_number<nm_notices.length; notice_number++)
 			{
-				if(nm_notices[i].classList.contains('hidden') || nm_notices[i].hasAttribute("aria-hidden"))
+				if(nm_notices[notice_number].classList.contains("hidden") || nm_notices[notice_number].hasAttribute("aria-hidden"))
 					{continue;}
-				nm_add_to_container(nm_notices[i]);
+				nm_add_to_container(nm_notices[notice_number]);
 			}
 		}
 		
 		if(nm_container != null)
 		{
-			nm_sanitize(document.querySelectorAll(".notice.notice-error"));
-			nm_sanitize(document.querySelectorAll(".error"));
-			nm_sanitize(document.querySelectorAll(".notice.notice-success"));
-			nm_sanitize(document.querySelectorAll(".updated"));
-			nm_sanitize(document.querySelectorAll(".notice.notice-warning"));
-			nm_sanitize(document.querySelectorAll(".notice.notice-info"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-error"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".error"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-success"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".updated"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-warning"));
+			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-info"));
 
-			var all_notices = document.querySelectorAll(".notice");
+			let all_notices = document.querySelectorAll(".notice");
 
-			for(var i=0; i<all_notices.length; i++)
+			for(let notice_number=0; notice_number<all_notices.length; notice_number++)
 			{
-				if(all_notices[i].classList.contains("notice-success") 
-					|| all_notices[i].classList.contains("notice-error") 
-					|| all_notices[i].classList.contains("notice-warning")
-					|| all_notices[i].classList.contains("notice-info")
-					|| all_notices[i].classList.contains("hidden")
-					|| all_notices[i].classList.contains("updated")
-					|| all_notices[i].classList.contains("error")
-					|| all_notices[i].hasAttribute('aria-hidden'))
+				if(all_notices[notice_number].classList.contains("nm-common")
+					|| all_notices[notice_number].classList.contains("hidden")
+					|| all_notices[notice_number].hasAttribute("aria-hidden"))
 					{continue;}
 				
-				nm_add_to_container(all_notices[i]);
+				nm_add_to_container(all_notices[notice_number]);
 			}
 		}
 		else
