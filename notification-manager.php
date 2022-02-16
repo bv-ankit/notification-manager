@@ -20,35 +20,42 @@ else
 	function nm_main()
 	{
 		//------------handle the case when require once fails
-		require_once('nm-data-handler.php');
-		wp_enqueue_script( 'show_notice_js', plugin_dir_url( __FILE__ ) . 'js/data_manage.js' );
 		wp_register_style( 'nm_admin_bar',plugin_dir_url(__FILE__) . 'css/nm_admin_bar.css' );
 		wp_enqueue_style( 'nm_admin_bar' );
-		add_action('admin_enqueue_scripts', 'enqueue_close_script');
 		add_action('admin_bar_menu', 'nm_menu_setup', 999);
+		add_action('admin_enqueue_scripts', 'nm_manage_script');
 	}
 
-	function enqueue_close_script() {
-		wp_enqueue_script( 'close_item_js', plugin_dir_url(__FILE__) . 'js/close_item.js');
+	function nm_manage_script()
+	{
+		wp_enqueue_script( 'nm_data_manage', plugin_dir_url( __FILE__ ) . 'js/data_manage.js', [], false, true );
+		wp_enqueue_script( 'nm_toggle_button', plugin_dir_url( __FILE__ ) . 'js/nm.js', [], false, true );
 	}
 
 	function nm_menu_setup($wp_admin_bar)
 	{
-		//-------------------- Showing all the data in menu
-		//adding notices section to the toolbar
-		$wp_admin_bar->add_node( array(
+		// added a notices menu to admin-bar
+
+		$wp_admin_bar->add_node(
+			array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
 			'title' => '<div style="text-align:right"> Notices </div>',
 			'href' => false,
-			'meta' => array('onclick' => '{var x = document.getElementById("wp-admin-bar-notification-manager-default").parentNode; x.style.display = (x.style.display === "block") ? "" : "block";}'),
-		));
+			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}' ),
+			)
+		);
+		
+		?>
+		
+		<div id="nm_container">
+        	<!-- <span class="dashicons dashicons-no-alt" id="nm_close"></span> -->
+        	<h3> There is no notification to display </h3>
+		</div>
 
-		$wp_admin_bar->add_node(array(
-			'id' => 404,
-			'parent' => 'notification-manager',
-			'title' => '<div style="color:black; height:17px !important;"></div>',
-		));
+		<?php
+
+		
 	}
 
 	add_action('init', 'nm_main');
