@@ -31,7 +31,7 @@ else
 
 	function nm_enqueue_notice_data()
 	{
-		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
+		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.min.js', [], false, true );
 	}
 
 	function nm_create_menu($wp_admin_bar)
