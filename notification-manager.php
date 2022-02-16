@@ -29,7 +29,6 @@ else
 	function nm_manage_script()
 	{
 		wp_enqueue_script( 'nm_data_manage', plugin_dir_url( __FILE__ ) . 'js/data_manage.js', [], false, true );
-		wp_enqueue_script( 'nm_toggle_button', plugin_dir_url( __FILE__ ) . 'js/nm.js', [], false, true );
 	}
 
 	function nm_menu_setup($wp_admin_bar)
@@ -42,14 +41,13 @@ else
 			'parent' => 'top-secondary',
 			'title' => '<div style="text-align:right"> Notices </div>',
 			'href' => false,
-			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}' ),
+			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}'),
 			)
 		);
 		
 		?>
 		
 		<div id="nm_container">
-        	<!-- <span class="dashicons dashicons-no-alt" id="nm_close"></span> -->
         	<h3> There is no notification to display </h3>
 		</div>
 

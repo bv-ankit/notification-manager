@@ -12,16 +12,14 @@ window.addEventListener('load', function ()
 				document.querySelector('#nm_container h3').remove();
 				toggle = 1;
 			}
-
-			// console.log(nm_notice.hasAttribute("aria-hidden"));
 			
 			var nm_container_div = '<div id="all_nm_'+noti_id+'"></div><br>';
-			// nm_container.appendChild(nm_container_div);
 			nm_container.innerHTML += nm_container_div;
 
 			var temp = '#all_nm_'+noti_id;
 			var nm_box = document.querySelector(temp);
 			nm_notice.classList.add("inline");
+			nm_notice.classList.add("notice-alt");
 			nm_notice.style.visibility = "unset";
 			nm_box.appendChild(nm_notice);
 			noti_id++;
