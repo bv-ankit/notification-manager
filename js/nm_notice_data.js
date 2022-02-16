@@ -11,16 +11,10 @@ window.addEventListener('load', function ()
 				document.querySelector('#nm_container h3').remove();
 				zero_notices_present = false;
 			}
-			
-			nm_container.innerHTML += '<div id="all_nm_'+notices_id+'"></div><br>';
-
-			let nm_notice_div_id = '#all_nm_' + notices_id;
-			let nm_div_box = document.querySelector(nm_notice_div_id);
 
 			nm_notice.classList.add("inline","notice-alt","nm-common");
 			nm_notice.style.visibility = "unset";
-			
-			nm_div_box.appendChild(nm_notice);
+			nm_container.appendChild(nm_notice);
 			notices_id++;
 		}
 

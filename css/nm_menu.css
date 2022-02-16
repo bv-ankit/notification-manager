@@ -55,8 +55,8 @@
 	text-align: center;
 }
 
-div[id^="all_nm_"]{
-	padding-left: 5px;
+.nm-common{
+	margin: 5px 15px 25px !important;
 }
 
 .notice {
