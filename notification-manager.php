@@ -9,6 +9,9 @@ Author: DrowningFish
 Author URI: https://blogvault.net/
  */
 
+
+if (!defined('ABSPATH')) exit;
+
 if(function_exists('nm_main'))
 {
 	echo '<div class="notice notice-error">';
@@ -19,18 +22,19 @@ else
 {
 	function nm_main()
 	{
-		wp_register_style( 'nm_admin_bar',plugin_dir_url(__FILE__) . 'css/nm_admin_bar.css' );
-		wp_enqueue_style( 'nm_admin_bar' );
-		add_action('admin_bar_menu', 'nm_menu_setup', 999);
-		add_action('admin_enqueue_scripts', 'nm_manage_script');
+		wp_enqueue_style( 'nm_menu',plugin_dir_url(__FILE__) . 'css/nm_menu.min.css' );
+
+		add_action('admin_bar_menu', 'nm_create_menu', 999);
+
+		add_action('admin_enqueue_scripts', 'nm_enqueue_notice_data');
 	}
 
-	function nm_manage_script()
+	function nm_enqueue_notice_data()
 	{
-		wp_enqueue_script( 'nm_data_manage', plugin_dir_url( __FILE__ ) . 'js/data_manage.js', [], false, true );
+		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
 	}
 
-	function nm_menu_setup($wp_admin_bar)
+	function nm_create_menu($wp_admin_bar)
 	{
 		$wp_admin_bar->add_node(
 			array(
@@ -41,6 +45,7 @@ else
 			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}'),
 			)
 		);
+
 		echo '<div id="nm_container"><h3> There is no notification to display </h3></div>';
 	}
 
