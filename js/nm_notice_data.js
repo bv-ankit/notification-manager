@@ -72,15 +72,8 @@ window.addEventListener('load', function ()
 
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
-			if(number_of_notifications != 0)
-			{
-				document.getElementById("no-notifications-present").style.display = "none";
-				document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
-			}
-			else
-			{
-				document.getElementById("no-notifications-present").style.display = "block";
-			}
+			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
+			document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
 		}
 		
 		refresh_notification_numbers();
