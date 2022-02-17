@@ -28,8 +28,8 @@ else
 
 	function nm_enqueue_notice_data()
 	{
-		wp_enqueue_style('nm_menu',plugin_dir_url(__FILE__) . 'css/nm_menu.min.css');
-		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.min.js', [], false, true );
+		wp_enqueue_style('nm_menu',plugin_dir_url(__FILE__) . 'css/nm_menu.css');
+		wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
 	}
 
 	function nm_create_menu($wp_admin_bar)
@@ -38,13 +38,12 @@ else
 			array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
-			'title' => '<div style="text-align:right"> Notifications <!--Notices--> </div>',
+			'title' => '<div id="notification-count" style="text-align:right" class="notification-count"> Notifications </div>',
 			'href' => false,
-			'meta' => array('onclick' => '{var x = document.getElementById("nm_container"); x.style.visibility = x.style.visibility === "visible" ? "hidden" : "visible";}'),
 			)
 		);
 
-		echo '<div id="nm_container"><h3> There is no notification to display </h3></div>';
+		echo '<div id="nm_container"><h3 id="no-notifications-present"> There is no notification to display </h3></div>';
 	}
 
 	add_action('init', 'nm_main');
