@@ -74,6 +74,7 @@ window.addEventListener('load', function ()
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
 			document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
+			console.log("abcd");
 		}
 		
 		refresh_notification_numbers();
