@@ -66,9 +66,9 @@ window.addEventListener('load', function ()
 		
 		admin_notification.addEventListener("mouseover", function(event) {nm_container_mouseover_css("visible","block");})
 		admin_notification.addEventListener("mouseout", function(event) {nm_container_mouseover_css("none","none");})
-		nm_container.addEventListener("mouseover", function(event) {nm_container_mouseover_css("visible","block");	})
-		nm_container.addEventListener("mouseout", function(event) {nm_container_mouseover_css("none","none"); refresh_notification_numbers();})
-		nm_container.addEventListener("click", function(event) {refresh_notification_numbers();})
+		nm_container.addEventListener("mouseover", function(event) {nm_container_mouseover_css("visible","block");})
+		nm_container.addEventListener("mouseout", function(event) {nm_container_mouseover_css("none","none");})
+		nm_container.addEventListener("click", function(event) {setTimeout(refresh_notification_numbers, 300);})
 
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
