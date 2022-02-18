@@ -59,22 +59,21 @@ window.addEventListener('load', function ()
 			document.getElementById("wpfooter").innerHTML += '<style>.notice {visibility:unset;}.updated {visibility:unset;}.error {visibility:unset;}</style>';
 		}
 
-		function nm_container_mouseover_css(nm_visiblity, nm_display){
+		function nm_container_mousevent_css(nm_visiblity, nm_display){
 			nm_container.style.visibility = nm_visiblity;
 			nm_container.style.display = nm_display;
 		}
 		
-		admin_notification.addEventListener("mouseover", function(event) {nm_container_mouseover_css("visible","block");})
-		admin_notification.addEventListener("mouseout", function(event) {nm_container_mouseover_css("none","none");})
-		nm_container.addEventListener("mouseover", function(event) {nm_container_mouseover_css("visible","block");})
-		nm_container.addEventListener("mouseout", function(event) {nm_container_mouseover_css("none","none");})
+		admin_notification.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
+		admin_notification.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
+		nm_container.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
+		nm_container.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
 		nm_container.addEventListener("click", function(event) {setTimeout(refresh_notification_numbers, 300);})
 
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
 			document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
-			console.log("abcd");
 		}
 		
 		refresh_notification_numbers();
