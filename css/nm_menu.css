@@ -11,6 +11,61 @@
 	background-color: #808080;
 }
 
+#nm_notice_alert_box{
+	bottom: 5vh;
+	left: -30vw;
+	visibility: visible;
+	z-index: 99999 !important;
+	width: 18vw;
+	position: fixed;
+	padding: 15px;
+	display: grid;
+	grid-template-columns: auto auto auto;
+
+	color: #555e7b;
+	background-color: #80cdc1;
+	font-size: 1.3rem;
+	align-items: center;
+
+	border-style: solid;
+	border-radius: 6px;
+	border-width: 0px;
+}
+
+
+#nm_alert_box_left_border{
+	height: 30px;
+	border-left-style: solid;
+	border-left-width: 3px;
+	border-color: white;
+}
+
+.nm_alert_animation {
+	animation: nm-enter-screen 9s linear 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes nm-enter-screen{
+	0% {left: -30vw;}
+	10% {left: 2vw;}
+	80% {left: 2vw;}
+	100% {left: -30vw;}
+}
+
+
+#nm_notice_alert_box span{
+	/*float: right;*/
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 1.8rem;
+	color: white;
+}
+
+#nm_notice_alert_box span:hover{
+	color: red;
+	cursor: pointer;
+}
+
 #nm_container{
 	width: 35vw;
 	height: 100%;
