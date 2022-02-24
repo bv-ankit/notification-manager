@@ -111,6 +111,23 @@
 	text-align: center;
 }
 
+#mark_all_read_button {
+	float: right;
+	margin-right: 10px;
+}
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
 .nm-common{
 	margin-top: 5px !important;
 	margin-right: 15px !important;
