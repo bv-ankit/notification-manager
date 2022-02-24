@@ -29,10 +29,7 @@ else
 
 	function nm_enqueue_notice_data()
 	{
-		if(get_option('notifications_seen_status_db')){
-			//echo "Exists";
-		}
-		else{
+		if(!get_option('notifications_seen_status_db')){
 			add_option('notifications_seen_status_db', array());
 		}
 		$options = get_option('notifications_seen_status_db');
