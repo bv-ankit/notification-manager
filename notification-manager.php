@@ -43,10 +43,10 @@ else
 			)
 		);
 		
-		$nm_temp = plugins_url()."/notification-manager/bell_icon.png";
+		$nm_temp = plugins_url()."/notification-manager/info.png";
 		echo '<div id="nm_container"><h3 id="no-notifications-present"> There is no notification to display </h3></div>';
 		echo '<script> function nm_hide(){console.log("aaa");document.getElementById("nm_notice_alert_box").style.visibility = "hidden"} </script>';
-		echo '<div id="nm_notice_alert_box" class="nm_alert_animation"><div id="nm_alert_box_left_border"></div>New Notification Alert';
+		echo '<div id="nm_notice_alert_box" class="nm_alert_animation"><img src="'.$nm_temp.'">New Notification Alert';
 		echo '<span onclick=nm_hide()> &times </span> </div>';
 	}
 
