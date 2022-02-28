@@ -26,9 +26,9 @@ function nm_create_menu($wp_admin_bar){
 	?>
 	<div id="nm_container">
 		<div id="nm_container_top">
-			<button class="nm_menu_button">Unread</button>
-			<button class="nm_menu_button">All</button>
-			<button id="mark_as_read_button"> Mark all as read </button>
+			<button onClick='nm_menu_toggle(true)' class="nm_menu_button">Unread</button>
+			<button onClick='nm_menu_toggle(false)' class="nm_menu_button">All</button>
+			<button onClick='nm_menu_toggle(true)' id="mark_as_read_button"> Mark all as read </button>
 		</div>
 		<hr>
 		<div id="nm_container_bottom">
@@ -40,10 +40,21 @@ function nm_create_menu($wp_admin_bar){
 			</div>
 		</div>
 	</div>
+	<script>
+	function nm_hide(){
+		document.getElementById("nm_notice_alert_box").style.visibility = "hidden";
+	}
+
+	function nm_menu_toggle(nm_toggle){
+		document.getElementById("nm_container_unread").style.display = nm_toggle ? "block" : "none";
+		document.getElementById("nm_container_all").style.display = nm_toggle ? "none" : "block";
+		document.getElementById("mark_as_read_button").style.display = nm_toggle ? "block" : "none";
+	}
+
+	</script>
 	<?php
-	// echo '<script> function nm_hide(){document.getElementById("nm_notice_alert_box").style.visibility = "hidden"} </script>';
-	// echo '<div id="nm_notice_alert_box" class="nm_alert_animation"><img src="'.$nm_temp.'">New Notification Alert';
-	// echo '<span onclick=nm_hide()> &times </span> </div>';
+	/*animatio-n*/echo '<div id="nm_notice_alert_box" class="nm_alert_animatio"><img src="'.$nm_temp.'">New Notification Alert';
+	echo '<span onclick=nm_hide()> &times </span> </div>';
 }
 
 add_action('admin_bar_menu', 'nm_create_menu', 999);
