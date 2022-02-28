@@ -77,12 +77,8 @@
 	cursor: pointer;
 }
 
-#mark_as_read_button:hover{
-	text-decoration: underline;
-}
-
 #nm_container_all{
-	display: none;
+	/*display: none;*/
 }
 
 .nm_alert_animation {
@@ -108,6 +104,11 @@
 	color: white;
 	cursor: pointer;
 }
+
+/*#nm_container_bottom{
+	overflow-x: auto;
+	overflow-y: hidden;
+}*/
 
 #nm_container{
 	width: 30vw;

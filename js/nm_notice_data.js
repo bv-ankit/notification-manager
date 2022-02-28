@@ -47,15 +47,17 @@ window.addEventListener('load', function ()
 			return nm_all_notices_count() - document.getElementsByClassName("nm-seen").length;
 		}
 
-		function refresh_notification_numbers(){
-			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_all_notices_count() + '</span>';
-			if(document.getElementById("nm_container_all").style.display == "none"){
+		function refresh_no_notice_state(){
+			if(document.getElementById("nm_container_all").style.display == "none" || document.getElementById("nm_container_all").style.display == ""){
 				document.getElementById("no_new_notifications").style.display = nm_unread_notices_count()==0 ? "block" : "none";
 			}
 			else{
-				// console.log(nm_all_notices_count());
 				document.getElementById("no_new_notifications").style.display = nm_all_notices_count()==0 ? "block" : "none";
 			}
+		}
+
+		function refresh_notification_numbers(){
+			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_all_notices_count() + '</span>';
 		}
 
 		function mark_all_as_read(event){
@@ -116,7 +118,8 @@ window.addEventListener('load', function ()
 
 		nm_container.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
 		nm_container.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
-		nm_container.addEventListener("click", function(event) {mark_all_as_read(event);setTimeout(refresh_notification_numbers, 300);})
+		nm_container.addEventListener("click", function(event) {mark_all_as_read(event);refresh_no_notice_state();setTimeout(refresh_notification_numbers, 300);})
+		refresh_no_notice_state();
 		refresh_notification_numbers();
 	}
 )
