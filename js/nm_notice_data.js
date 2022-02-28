@@ -6,6 +6,7 @@ window.addEventListener('load', function ()
 		let nm_container_unread = document.querySelector("#nm_container_unread");
 		let nm_hash_of_read_notices_json = JSON.stringify(nm_hash_of_read_notices);
 		let number_of_notifications = 0;
+		let number_of_unread_notifications = 0;
 
 		function nm_add_to_container(nm_notice)
 		{
@@ -40,9 +41,7 @@ window.addEventListener('load', function ()
 
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
-			let number_of_unread_notifications = number_of_notifications - document.getElementsByClassName("nm-seen").length;
-			console.log(number_of_unread_notifications);
-			console.log(number_of_notifications);
+			number_of_unread_notifications = number_of_notifications - document.getElementsByClassName("nm-seen").length;
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
 			document.getElementById("nm_no_unread_notification_present").style.display = number_of_unread_notifications != 0 ? "none" : "block";
 			document.getElementById("nm_no_all_notification_present").style.display = number_of_notifications != 0 ? "none" : "block";
