@@ -33,10 +33,10 @@ function nm_create_menu($wp_admin_bar){
 		<hr>
 		<div id="nm_container_bottom">
 			<div id="nm_container_unread">
-				<h3> There is no notification to display </h3>
+				<h3 id="nm_no_unread_notification_present"> No Unread notification </h3>
 			</div>
 			<div id="nm_container_all">
-				<h3> There is no notification to display </h3>
+				<h3 id="nm_no_all_notification_present"> No notification to display </h3>
 			</div>
 		</div>
 	</div>

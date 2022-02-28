@@ -2,7 +2,8 @@ var MD5 = function(d){var r = M(V(Y(X(d),8*d.length)));return r.toLowerCase()};f
 window.addEventListener('load', function () 
 	{
 		let notices_id = 1;
-		let nm_container = document.querySelector("#nm_container_all");
+		let nm_container_all = document.querySelector("#nm_container_all");
+		let nm_container_unread = document.querySelector("#nm_container_unread");
 		let nm_hash_of_read_notices_json = JSON.stringify(nm_hash_of_read_notices);
 		let number_of_notifications = 0;
 
@@ -11,10 +12,12 @@ window.addEventListener('load', function ()
 			nm_notice.classList.add("inline","notice-alt","nm-common");
 			nm_notice.style.visibility = "unset";
 			let nm_notice_hash = MD5(nm_notice.innerHTML);
+			nm_container_all.appendChild(nm_notice);
 			if(nm_hash_of_read_notices_json.includes(nm_notice_hash)){
 				nm_notice.classList.add("nm-seen");
+				return;
 			}
-			nm_container.appendChild(nm_notice);
+			nm_container_unread.appendChild(nm_notice);
 			notices_id++;
 		}
 
@@ -37,8 +40,12 @@ window.addEventListener('load', function ()
 
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
+			let number_of_unread_notifications = number_of_notifications - document.getElementsByClassName("nm-seen").length;
+			console.log(number_of_unread_notifications);
+			console.log(number_of_notifications);
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
-			// document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
+			document.getElementById("nm_no_unread_notification_present").style.display = number_of_unread_notifications != 0 ? "none" : "block";
+			document.getElementById("nm_no_all_notification_present").style.display = number_of_notifications != 0 ? "none" : "block";
 		}
 
 		// function mark_all_as_read(event){
