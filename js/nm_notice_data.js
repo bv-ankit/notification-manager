@@ -48,11 +48,14 @@ window.addEventListener('load', function ()
 		}
 
 		function refresh_notification_numbers(){
-			number_of_notifications = document.getElementsByClassName("nm-common").length;
-			number_of_unread_notifications = number_of_notifications - document.getElementsByClassName("nm-seen").length;
-			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
-			document.getElementById("nm_no_unread_notification_present").style.display = number_of_unread_notifications != 0 ? "none" : "block";
-			document.getElementById("nm_no_all_notification_present").style.display = number_of_notifications != 0 ? "none" : "block";
+			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_all_notices_count() + '</span>';
+			if(document.getElementById("nm_container_all").style.display == "none"){
+				document.getElementById("no_new_notifications").style.display = nm_unread_notices_count()==0 ? "block" : "none";
+			}
+			else{
+				// console.log(nm_all_notices_count());
+				document.getElementById("no_new_notifications").style.display = nm_all_notices_count()==0 ? "block" : "none";
+			}
 		}
 
 		function mark_all_as_read(event){

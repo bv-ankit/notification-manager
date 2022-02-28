@@ -12,6 +12,7 @@ Author URI: https://blogvault.net/
 
 if (!defined('ABSPATH')) exit;
 
+// delete_option("nm_hash_of_read_notices");
 function nm_create_menu($wp_admin_bar){
 	$wp_admin_bar->add_node(
 		array(
@@ -32,12 +33,9 @@ function nm_create_menu($wp_admin_bar){
 		</div>
 		<hr>
 		<div id="nm_container_bottom">
-			<div id="nm_container_unread">
-				<h3 id="nm_no_unread_notification_present"> No Unread notification </h3>
-			</div>
-			<div id="nm_container_all">
-				<h3 id="nm_no_all_notification_present"> No notification to display </h3>
-			</div>
+			<h3 id="no_new_notifications"> No New Notifications </h3>
+			<div id="nm_container_unread"></div>
+			<div id="nm_container_all"></div>
 		</div>
 	</div>
 	<script>
@@ -46,7 +44,7 @@ function nm_create_menu($wp_admin_bar){
 	}
 
 	function nm_menu_toggle(nm_toggle){
-		document.getElementById("nm_container_unread").style.display = nm_toggle ? "block" : "none";
+		// document.getElementById("no_new_notifications").style.display = "none";
 		document.getElementById("nm_container_all").style.display = nm_toggle ? "none" : "block";
 		document.getElementById("mark_as_read_button").style.display = nm_toggle ? "block" : "none";
 	}
@@ -54,7 +52,7 @@ function nm_create_menu($wp_admin_bar){
 	</script>
 	<?php
 	/*animatio-n*/echo '<div id="nm_notice_alert_box" class="nm_alert_animatio"><img src="'.$nm_temp.'">New Notification Alert';
-	echo '<span onclick=nm_hide()> &times </span> </div>';
+	echo '<span onClick=nm_hide()> &times </span> </div>';
 }
 
 add_action('admin_bar_menu', 'nm_create_menu', 999);
