@@ -2,7 +2,7 @@ var MD5 = function(d){var r = M(V(Y(X(d),8*d.length)));return r.toLowerCase()};f
 window.addEventListener('load', function () 
 	{
 		let notices_id = 1;
-		let nm_container = document.querySelector("#nm_container");
+		let nm_container = document.querySelector("#nm_container_all");
 		let nm_hash_of_read_notices_json = JSON.stringify(nm_hash_of_read_notices);
 		let number_of_notifications = 0;
 
@@ -38,11 +38,11 @@ window.addEventListener('load', function ()
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + number_of_notifications + '</span>';
-			document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
+			// document.getElementById("no-notifications-present").style.display = number_of_notifications != 0 ? "none" : "block";
 		}
 
 		// function mark_all_as_read(event){
-		// 	if(event.target.id == "mark_all_read_button"){
+		// 	if(event.target.id == "mark_as_read_button"){
 		// 		let container_1_notices = document.querySelector("#nm_container").querySelectorAll(".nm-common");
 		// 		let container_1_notices_length = container_1_notices.length;
 		// 		if(container_1_notices_length > 0){

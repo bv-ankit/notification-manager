@@ -23,10 +23,27 @@ function nm_create_menu($wp_admin_bar){
 	);
 
 	$nm_temp = plugins_url()."/notification-manager/info.png";
-	echo '<div id="nm_container"><h3 id="no-notifications-present"> There is no notification to display </h3></div>';
-	echo '<script> function nm_hide(){console.log("aaa");document.getElementById("nm_notice_alert_box").style.visibility = "hidden"} </script>';
-	echo '<div id="nm_notice_alert_box" class="nm_alert_animation"><img src="'.$nm_temp.'">New Notification Alert';
-	echo '<span onclick=nm_hide()> &times </span> </div>';
+	?>
+	<div id="nm_container">
+		<div id="nm_container_top">
+			<button class="nm_menu_button">Unread</button>
+			<button class="nm_menu_button">All</button>
+			<button id="mark_as_read_button"> Mark all as read </button>
+		</div>
+		<hr>
+		<div id="nm_container_bottom">
+			<div id="nm_container_unread">
+				<h3> There is no notification to display </h3>
+			</div>
+			<div id="nm_container_all">
+				<h3> There is no notification to display </h3>
+			</div>
+		</div>
+	</div>
+	<?php
+	// echo '<script> function nm_hide(){document.getElementById("nm_notice_alert_box").style.visibility = "hidden"} </script>';
+	// echo '<div id="nm_notice_alert_box" class="nm_alert_animation"><img src="'.$nm_temp.'">New Notification Alert';
+	// echo '<span onclick=nm_hide()> &times </span> </div>';
 }
 
 add_action('admin_bar_menu', 'nm_create_menu', 999);
