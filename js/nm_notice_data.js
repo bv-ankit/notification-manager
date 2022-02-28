@@ -48,29 +48,28 @@ window.addEventListener('load', function ()
 			document.getElementById("nm_no_all_notification_present").style.display = number_of_notifications != 0 ? "none" : "block";
 		}
 
-		// function mark_all_as_read(event){
-		// 	if(event.target.id == "mark_as_read_button"){
-		// 		let container_1_notices = document.querySelector("#nm_container").querySelectorAll(".nm-common");
-		// 		let container_1_notices_length = container_1_notices.length;
-		// 		if(container_1_notices_length > 0){
-		// 			const new_hashes = [];
-		// 			for( let cn=0; cn < container_1_notices_length; cn++){
-		// 				let temp_notice = container_1_notices[cn];
-		// 				let container_1_notice_hash = MD5(temp_notice.innerHTML);
-		// 				new_hashes.push(container_1_notice_hash);
-		// 				temp_notice.classList.add("nm-seen");
-		// 				nm_container.appendChild(temp_notice);
-		// 			}
-		// 			jQuery(document).ready(function($){             
-  //                                       	$.ajax({
-  //                                       	type: "POST",
-  //                                       	url: ajaxurl,
-  //                                       	data: {action: "update_notification_option", 'nm_notices_hash_data': new_hashes},
-  //                                       	});
-  //                               	});
-		// 		}
-		// 	}
-		// }
+		function mark_all_as_read(event){
+		 	if(event.target.id == "mark_as_read_button"){
+		 		let nm_container_unread_notifications = document.querySelector("#nm_container_unread").querySelectorAll(".nm-common");
+		 		if(nm_container_unread_notifications.length > 0){
+		 			const new_hashes = [];
+		 			for( let unread_notification=0; unread_notification < nm_container_unread_notifications.length; unread_notification++){
+		 				let nm_unread_notification = nm_container_unread_notifications[unread_notification];
+		 				//let nm_unread_notification_hash = MD5(nm_unread_notification.innerHTML);
+		 				new_hashes.push(MD5(nm_unread_notification.innerHTML));
+		 				nm_unread_notification.classList.add("nm-seen");
+		 				nm_container_all.appendChild(nm_unread_notification);
+		 			}
+		 			jQuery(document).ready(function($){             
+                                        	$.ajax({
+                                         	type: "POST",
+                                         	url: ajaxurl,
+                                         	data: {action: "update_notification_option", 'nm_notices_hash_data': new_hashes},
+                                         	});
+                                 	});
+		 		}
+		 	}
+		 }
 
 		if(nm_container != null)
 		{
@@ -106,7 +105,7 @@ window.addEventListener('load', function ()
 
 		nm_container.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
 		nm_container.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
-		nm_container.addEventListener("click", function(event) {/*mark_all_as_read(event);*/setTimeout(refresh_notification_numbers, 300);})
+		nm_container.addEventListener("click", function(event) {mark_all_as_read(event);setTimeout(refresh_notification_numbers, 300);})
 		refresh_notification_numbers();
 	}
 )

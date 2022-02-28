@@ -77,6 +77,10 @@
 	cursor: pointer;
 }
 
+#mark_as_read_button:hover{
+	text-decoration: underline;
+}
+
 #nm_container_all{
 	display: none;
 }
