@@ -39,6 +39,14 @@ window.addEventListener('load', function ()
 			nm_container.style.display = nm_display;
 		}
 
+		function nm_all_notices_count(){
+			return document.getElementsByClassName("nm-common").length;
+		}
+
+		function nm_unread_notices_count(){
+			return nm_all_notices_count() - document.getElementsByClassName("nm-seen").length;
+		}
+
 		function refresh_notification_numbers(){
 			number_of_notifications = document.getElementsByClassName("nm-common").length;
 			number_of_unread_notifications = number_of_notifications - document.getElementsByClassName("nm-seen").length;
@@ -46,6 +54,7 @@ window.addEventListener('load', function ()
 			document.getElementById("nm_no_unread_notification_present").style.display = number_of_unread_notifications != 0 ? "none" : "block";
 			document.getElementById("nm_no_all_notification_present").style.display = number_of_notifications != 0 ? "none" : "block";
 		}
+
 
 		// function mark_all_as_read(event){
 		// 	if(event.target.id == "mark_as_read_button"){
