@@ -27,8 +27,8 @@ function nm_create_menu($wp_admin_bar){
 	?>
 	<div id="nm_container">
 		<div id="nm_container_top">
-			<button onClick='nm_menu_toggle(true)' class="nm_menu_button">Unread</button>
-			<button onClick='nm_menu_toggle(false)' class="nm_menu_button">All</button>
+			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread" >Unread</button>
+			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all" >All</button>
 			<button onClick='nm_menu_toggle(true)' id="mark_as_read_button"> Mark all as read </button>
 		</div>
 		<hr>
@@ -44,9 +44,10 @@ function nm_create_menu($wp_admin_bar){
 	}
 
 	function nm_menu_toggle(nm_toggle){
-		// document.getElementById("no_new_notifications").style.display = "none";
 		document.getElementById("nm_container_all").style.display = nm_toggle ? "none" : "block";
 		document.getElementById("mark_as_read_button").style.display = nm_toggle ? "block" : "none";
+		document.getElementById("nm_all").style.color = nm_toggle ? "#a8aaac" : "black";
+		document.getElementById("nm_unread").style.color = nm_toggle ? "black" : "#a8aaac";
 	}
 
 	</script>

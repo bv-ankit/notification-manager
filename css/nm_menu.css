@@ -22,12 +22,10 @@
 	padding-right: 0px;
 	display: grid;
 	grid-template-columns: auto auto auto;
-
 	color: white;
 	background-color: #2B71B1;
 	font-size: 1.3rem;
 	align-items: center;
-
 	border-style: solid;
 	border-radius: 6px;
 	border-width: 0;
@@ -53,27 +51,53 @@
 
 .nm_menu_button:hover::after{
 	width: 100%;
-	border-bottom: solid 3px black;
+	border-bottom: solid 3px #2B71B1;
+}
+
+#nm_all{
+	color: #a8aaac;
+}
+
+#no_new_notifications{
+	margin-top: 50%;
+	color: #a8aaac;
 }
 
 .nm_menu_button::after{
 	content: '';
 	width: 0px;
   	display: block;
-  	border-bottom: solid 3px transparent;
-	transition: width .5s ease;
+  	border-bottom: solid 3px #2B71B1;
+	transition: width .3s ease;
+}
+
+#nm_container hr{
+	margin: 10px 20px 10px 20px;
 }
 
 #mark_as_read_button{
 	float: right;
-	outline: none;
-	border: none;
+	border: solid 1px transparent;
+	border-radius: 3px;
 	margin-right: 20px;
-	background-color: transparent;
-	font-weight: bold;
-	font-size: 0.9rem;
-	padding-top: 10px;
+	background-color: #AFE1AF;
+	/*font-weight: bold;*/
+	font-size: 0.8rem;
+	/*padding-top: 5px;*/
+	padding: 6px;
 	cursor: pointer;
+	/*text-decoration: underline;*/
+	color: #355E3B;
+}
+
+#mark_as_read_button:hover{
+	border: solid 1px #097969;
+	/*color: black;*/
+	background-color: white;
+}
+
+#nm_container_all{
+	display: none;
 }
 
 .nm_alert_animation {
