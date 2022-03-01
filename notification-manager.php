@@ -12,7 +12,7 @@ Author URI: https://blogvault.net/
 
 if (!defined('ABSPATH')) exit;
 
-//delete_option("nm_hash_of_read_notices");
+// delete_option("nm_hash_of_read_notices");
 function nm_create_menu($wp_admin_bar){
 	$wp_admin_bar->add_node(
 		array(

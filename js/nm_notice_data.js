@@ -35,69 +35,6 @@ window.addEventListener('load', function ()
 			}
 		}
 
-		function nm_container_mousevent_css(nm_visiblity, nm_display){
-			nm_container.style.visibility = nm_visiblity;
-			nm_container.style.display = nm_display;
-		}
-
-		function nm_all_notices_count(){
-			return document.getElementsByClassName("nm-common").length;
-		}
-
-		function nm_unread_notices_count(){
-			return nm_all_notices_count() - document.getElementsByClassName("nm-seen").length;
-		}
-
-		function refresh_no_notice_state(){
-			if(document.getElementById("nm_container_all").style.display == "none" || document.getElementById("nm_container_all").style.display == ""){
-				document.getElementById("no_new_notifications").style.display = nm_unread_notices_count()==0 ? "block" : "none";
-			}
-			else{
-				document.getElementById("no_new_notifications").style.display = nm_all_notices_count()==0 ? "block" : "none";
-			}
-		}
-
-		function refresh_notification_numbers(){
-			if(nm_unread_notices_count() > 0){
-				document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_unread_notices_count() + '</span>';
-			}
-			else{
-				document.getElementById("notification-count").innerHTML = 'Notifications';
-			}
-			document.getElementById("nm_count_unread").innerHTML = nm_unread_notices_count();
-			document.getElementById("nm_count_all").innerHTML = nm_all_notices_count();
-		}
-
-		function nm_alert_for_notice(){
-			if(nm_unread_notices_count() != 0){
-				document.getElementById("nm_notice_alert_box").classList.add("nm_alert_animation");
-			}
-		}
-
-		function mark_all_as_read(event){
-		 	if(event.target.id == "mark_as_read_button"){
-		 		let nm_container_unread_notifications = document.querySelector("#nm_container_unread").querySelectorAll(".nm-common");
-		 		if(nm_container_unread_notifications.length > 0){
-		 			const new_hashes = [];
-		 			for( let unread_notification=0; unread_notification < nm_container_unread_notifications.length; unread_notification++){
-		 				let nm_unread_notification = nm_container_unread_notifications[unread_notification];
-		 				//let nm_unread_notification_hash = MD5(nm_unread_notification.innerHTML);
-		 				new_hashes.push(MD5(nm_unread_notification.innerHTML));
-		 				nm_unread_notification.classList.add("nm-seen");
-		 				nm_container_all.appendChild(nm_unread_notification);
-		 			}
-		 			jQuery(document).ready(function($){             
-                                        	$.ajax({
-                                         	type: "POST",
-                                         	url: ajaxurl,
-                                         	data: {action: "update_notification_option", 'nm_notices_hash_data': new_hashes},
-                                         	});
-                                 	});
-		 		}
-		 	}
-		 }
-		
-
 		if(nm_container != null)
 		{
 			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-error"));
@@ -125,16 +62,82 @@ window.addEventListener('load', function ()
 			document.getElementById("wpfooter").innerHTML += '<style>.notice {visibility:unset;}.updated {visibility:unset;}.error {visibility:unset;}</style>';
 		}
 
-		let admin_notification = document.getElementById("wp-admin-bar-notification-manager");
-		admin_notification.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
-		admin_notification.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
+		// ---------------------
+
+		function mark_all_as_read(event){
+		 	if(event.target.id == "mark_as_read_button")
+		 	{
+		 		let nm_unread_notices = document.querySelectorAll("#nm_container_unread .nm-common");
+		 		if(nm_unread_notices.length > 0)
+		 		{
+		 			const nm_hashes = [];
+		 			for( let nm_notice_idx=0; nm_notice_idx < nm_unread_notices.length; nm_notice_idx++)
+		 			{
+		 				let nm_notice = nm_unread_notices[nm_notice_idx];
+		 				nm_hashes.push(MD5(nm_notice.innerHTML));
+		 				nm_notice.classList.add("nm-seen");
+		 				nm_container_all.appendChild(nm_notice);
+		 			}
+
+		 			jQuery(document).ready(function($){             
+                                        	$.ajax({
+                                         	type: "POST",
+                                         	url: ajaxurl,
+                                         	data: {action: "update_notification_option", 'nm_notices_hash_data': nm_hashes},
+                                         	});
+                                 	});
+		 		}
+		 	}
+		}
 
 
-		nm_container.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
-		nm_container.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
+		function nm_all_notices_count(){
+			return document.getElementsByClassName("nm-common").length;
+		}
+
+		function nm_unread_notices_count(){
+			return nm_all_notices_count() - document.getElementsByClassName("nm-seen").length;
+		}
+
+		function refresh_no_notice_state(){
+			if(document.getElementById("nm_container_all").style.display == "none" || document.getElementById("nm_container_all").style.display == ""){
+				document.getElementById("no_new_notifications").style.display = nm_unread_notices_count()==0 ? "block" : "none";
+			}
+			else{
+				document.getElementById("no_new_notifications").style.display = nm_all_notices_count()==0 ? "block" : "none";
+			}
+		}
+
+		function refresh_notification_numbers(){
+			var nm_count_text =  nm_unread_notices_count() > 0 ? 'Notifications <span id="nm_display_notification_number">' + nm_unread_notices_count() + '</span>' : 'Notifications';
+			document.getElementById("notification-count").innerHTML = nm_count_text;
+			document.getElementById("nm_count_unread").innerHTML = nm_unread_notices_count();
+			document.getElementById("nm_count_all").innerHTML = nm_all_notices_count();
+		}
+
+		function nm_alert_for_notice(){
+			if(nm_unread_notices_count() != 0){
+				document.getElementById("nm_notice_alert_box").classList.add("nm_alert_animation");
+			}
+		}
+
 		nm_container.addEventListener("click", function(event) {mark_all_as_read(event);refresh_no_notice_state();setTimeout(refresh_notification_numbers, 300);})
 		refresh_no_notice_state();
 		refresh_notification_numbers();
 		setTimeout(nm_alert_for_notice, 15000);
+
+
+		// ----------------------
+
+		function nm_container_mousevent_css(nm_visiblity, nm_display){
+			nm_container.style.visibility = nm_visiblity;
+			nm_container.style.display = nm_display;
+		}
+
+		let admin_notification = document.getElementById("wp-admin-bar-notification-manager");
+		admin_notification.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
+		admin_notification.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
+		nm_container.addEventListener("mouseover", function(event) {nm_container_mousevent_css("visible","block");})
+		nm_container.addEventListener("mouseout", function(event) {nm_container_mousevent_css("none","none");})
 	}
 )
