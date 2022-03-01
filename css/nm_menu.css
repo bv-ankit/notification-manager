@@ -57,6 +57,10 @@
 	border-bottom: solid 3px black;
 }
 
+#nm_all{
+	color: #a8aaac;
+}
+
 .nm_menu_button::after{
 	content: '';
 	width: 0px;
@@ -75,10 +79,11 @@
 	font-size: 0.9rem;
 	padding-top: 10px;
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 #nm_container_all{
-	/*display: none;*/
+	display: none;
 }
 
 .nm_alert_animation {
