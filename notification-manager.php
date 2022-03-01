@@ -27,8 +27,8 @@ function nm_create_menu($wp_admin_bar){
 	?>
 	<div id="nm_container">
 		<div id="nm_container_top">
-			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread" >Unread<div id="nm_count_unread">6</div></button>
-			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all" >All<div id="nm_count_all">9</div></button>
+			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread" >Unread<div id="nm_count_unread"></div></button>
+			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all" >All<div id="nm_count_all"></div></button>
 			<button onClick='nm_menu_toggle(true)' id="mark_as_read_button"> Mark all as read </button>
 		</div>
 		<hr>

@@ -58,6 +58,8 @@ window.addEventListener('load', function ()
 
 		function refresh_notification_numbers(){
 			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_all_notices_count() + '</span>';
+			document.getElementById("nm_count_unread").innerHTML = nm_unread_notices_count();
+			document.getElementById("nm_count_all").innerHTML = nm_all_notices_count();
 		}
 
 		function mark_all_as_read(event){
