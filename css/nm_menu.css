@@ -37,10 +37,10 @@
 
 #nm_notice_alert_box{
 	bottom: 5vh;
-	left: -30vw;
+	left: -33vw;
 	visibility: visible;
 	z-index: 99999 !important;
-	width: 18vw;
+	width: 22vw;
 	position: fixed;
 	padding: 15px;
 	padding-right: 0px;

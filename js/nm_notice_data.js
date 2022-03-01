@@ -63,6 +63,12 @@ window.addEventListener('load', function ()
 			document.getElementById("nm_count_all").innerHTML = nm_all_notices_count();
 		}
 
+		function nm_alert_for_notice(){
+			if(nm_unread_notices_count() != 0){
+				document.getElementById("nm_notice_alert_box").classList.add("nm_alert_animation");
+			}
+		}
+
 		function mark_all_as_read(event){
 		 	if(event.target.id == "mark_as_read_button"){
 		 		let nm_container_unread_notifications = document.querySelector("#nm_container_unread").querySelectorAll(".nm-common");
@@ -124,5 +130,6 @@ window.addEventListener('load', function ()
 		nm_container.addEventListener("click", function(event) {mark_all_as_read(event);refresh_no_notice_state();setTimeout(refresh_notification_numbers, 300);})
 		refresh_no_notice_state();
 		refresh_notification_numbers();
+		setTimeout(nm_alert_for_notice, 15000);
 	}
 )

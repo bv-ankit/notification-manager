@@ -54,7 +54,7 @@ function nm_create_menu($wp_admin_bar){
 
 	</script>
 	<?php
-	/*animatio-n*/echo '<div id="nm_notice_alert_box" class="nm_alert_animatio"><img src="'.$nm_temp.'">New Notification Alert';
+	echo '<div id="nm_notice_alert_box" ><img src="'.$nm_temp.'"> You have Unread Notifications';
 	echo '<span onClick=nm_hide()> &times </span> </div>';
 }
 
