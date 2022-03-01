@@ -58,7 +58,12 @@ window.addEventListener('load', function ()
 		}
 
 		function refresh_notification_numbers(){
-			document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_all_notices_count() + '</span>';
+			if(nm_unread_notices_count() > 0){
+				document.getElementById("notification-count").innerHTML = 'Notifications <span id="nm_display_notification_number">' + nm_unread_notices_count() + '</span>';
+			}
+			else{
+				document.getElementById("notification-count").innerHTML = 'Notifications';
+			}
 			document.getElementById("nm_count_unread").innerHTML = nm_unread_notices_count();
 			document.getElementById("nm_count_all").innerHTML = nm_all_notices_count();
 		}
