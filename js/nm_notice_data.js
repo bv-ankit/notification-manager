@@ -29,7 +29,8 @@ window.addEventListener('load', function ()
 			{
 				if(nm_notices[notice_number].classList.contains("hidden")
 					|| nm_notices[notice_number].hasAttribute("aria-hidden")
-					|| nm_notices[notice_number].classList.contains("hide-if-js"))
+					|| nm_notices[notice_number].classList.contains("hide-if-js")
+					|| nm_notices[notice_number].classList.contains("inline"))
 					{continue;}
 				nm_add_to_container(nm_notices[notice_number]);
 			}
@@ -37,6 +38,11 @@ window.addEventListener('load', function ()
 
 		if(nm_container != null)
 		{
+			var nm_inline_notices = document.querySelectorAll(".inline");
+			for(var nm_inline_notice=0; nm_inline_notice<nm_inline_notices.length; nm_inline_notice++)
+			{
+				nm_inline_notices[nm_inline_notice].style.visibility = "visible";
+			}
 			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-error"));
 			nm_sanitize_and_proceed(document.querySelectorAll(".error"));
 			nm_sanitize_and_proceed(document.querySelectorAll(".notice.notice-success"));
@@ -51,7 +57,8 @@ window.addEventListener('load', function ()
 				if(all_notices[notice_number].classList.contains("nm-common")
 					|| all_notices[notice_number].classList.contains("hidden")
 					|| all_notices[notice_number].hasAttribute("aria-hidden")
-					|| all_notices[notice_number].classList.contains("hide-if-js"))
+					|| all_notices[notice_number].classList.contains("hide-if-js")
+					|| all_notices[notice_number].classList.contains("inline"))
 					{continue;}
 				
 				nm_add_to_container(all_notices[notice_number]);
