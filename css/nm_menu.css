@@ -11,6 +11,30 @@
 	background-color: #808080;
 }
 
+#nm_count_unread{
+	display: inline-flex;
+	padding: 3px 7px;
+	background-color: black;
+	color: white;
+	margin-left: 5px;
+	margin-bottom: 3px;
+	border: solid 0px transparent;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+
+#nm_count_all{
+	display: inline-flex;
+	padding: 3px 7px;
+	background-color: #a8aaac;
+	color: white;
+	margin-left: 5px;
+	margin-bottom: 3px;
+	border: solid 0px transparent;
+	border-radius: 4px;
+	font-size: 1rem;
+}
+
 #nm_notice_alert_box{
 	bottom: 5vh;
 	left: -30vw;
@@ -125,12 +149,13 @@
 }
 
 #nm_container_bottom{
-	height: 94%;
+	height: 90%;
 	overflow-y: scroll;
 }
 
 #nm_container{
 	width: 30vw;
+	min-width: 400px;
 	height: 100%;
 	position: fixed;
 	visibility: visible;

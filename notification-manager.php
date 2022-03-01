@@ -27,8 +27,8 @@ function nm_create_menu($wp_admin_bar){
 	?>
 	<div id="nm_container">
 		<div id="nm_container_top">
-			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread" >Unread</button>
-			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all" >All</button>
+			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread" >Unread<div id="nm_count_unread">6</div></button>
+			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all" >All<div id="nm_count_all">9</div></button>
 			<button onClick='nm_menu_toggle(true)' id="mark_as_read_button"> Mark all as read </button>
 		</div>
 		<hr>
@@ -48,6 +48,8 @@ function nm_create_menu($wp_admin_bar){
 		document.getElementById("mark_as_read_button").style.display = nm_toggle ? "block" : "none";
 		document.getElementById("nm_all").style.color = nm_toggle ? "#a8aaac" : "black";
 		document.getElementById("nm_unread").style.color = nm_toggle ? "black" : "#a8aaac";
+		document.getElementById("nm_count_all").style.backgroundColor = nm_toggle ? "#a8aaac" : "black";
+		document.getElementById("nm_count_unread").style.backgroundColor = nm_toggle ? "black" : "#a8aaac";
 	}
 
 	</script>
