@@ -10,9 +10,10 @@ window.addEventListener('load', function ()
 
 		function nm_add_to_container(nm_notice)
 		{
+			let nm_notice_hash = MD5(nm_notice.innerHTML);
+			if(nm_notice_hash == "d41d8cd98f00b204e9800998ecf8427e"){return;}
 			nm_notice.classList.add("inline","notice-alt","nm-common");
 			nm_notice.style.visibility = "unset";
-			let nm_notice_hash = MD5(nm_notice.innerHTML);
 			nm_container_all.appendChild(nm_notice);
 			if(nm_hash_of_read_notices_json.includes(nm_notice_hash)){
 				nm_notice.classList.add("nm-seen");
