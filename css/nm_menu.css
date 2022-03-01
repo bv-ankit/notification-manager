@@ -158,7 +158,7 @@
 	min-width: 400px;
 	height: 100%;
 	position: fixed;
-	visibility: visible;
+	visibility: hidden;
 	display: block;
 	right: 5%;
 	z-index: 99999999 !important;
