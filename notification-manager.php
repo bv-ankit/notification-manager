@@ -64,7 +64,8 @@ function nm_enqueue_notice_data() {
 	add_option('nm_hash_of_read_notices', array());
 	$nm_hash_of_read_notices = get_option('nm_hash_of_read_notices');
 	wp_enqueue_style('nm_menu', plugin_dir_url(__FILE__) . 'css/nm_menu.css');
-	wp_enqueue_script( 'nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
+	wp_enqueue_script('nm_md5_hash', plugin_dir_url( __FILE__ ) . 'js/md5.min.js', [], false, true ); 
+	wp_enqueue_script('nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
 	wp_localize_script('nm_notice_data', 'nm_hash_of_read_notices', $nm_hash_of_read_notices);
 }
 
