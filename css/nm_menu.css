@@ -194,10 +194,8 @@
 }
 
 .nm-common {
-	margin-top: 5px !important;
-	margin-right: 15px !important;
-	margin-bottom: 25px !important;
-	margin-left: 15px !important;
+	margin: 5px 15px 25px 15px !important;
+	width: auto !important;
 }
 
 .notice {
