@@ -18,7 +18,7 @@ function nm_create_menu( $wp_admin_bar ) {
 		array(
 			'id' => 'notification-manager',
 			'parent' => 'top-secondary',
-			'title' => '<div id="notification-count" style="text-align:right" class="notification-count">Notifications</div>',
+			'title' => '<div id="nm_notification_count" style="text-align:right" >Notifications</div>',
 			'href' => false,
 		)
 	);
@@ -29,11 +29,11 @@ function nm_create_menu( $wp_admin_bar ) {
 		<div id="nm_container_top">
 			<button onClick='nm_menu_toggle(true)' class="nm_menu_button" id="nm_unread">Unread<div id="nm_count_unread"></div></button>
 			<button onClick='nm_menu_toggle(false)' class="nm_menu_button" id="nm_all">All<div id="nm_count_all"></div></button>
-			<button onClick='nm_menu_toggle(true)' id="mark_as_read_button">Mark all as read</button>
+			<button onClick='nm_menu_toggle(true)' id="nm_mark_as_read">Mark all as read</button>
 		</div>
 		<hr>
 		<div id="nm_container_bottom">
-			<h3 id="no_new_notifications">No New Notifications</h3>
+			<h3 id="nm_no_new_notice">No New Notifications</h3>
 			<div id="nm_container_unread"></div>
 			<div id="nm_container_all"></div>
 		</div>
@@ -45,7 +45,7 @@ function nm_create_menu( $wp_admin_bar ) {
 
 	function nm_menu_toggle( nm_toggle ) {
 		document.getElementById("nm_container_all").style.display = nm_toggle ? "none" : "block";
-		document.getElementById("mark_as_read_button").style.display = nm_toggle ? "block" : "none";
+		document.getElementById("nm_mark_as_read").style.display = nm_toggle ? "block" : "none";
 		document.getElementById("nm_all").style.color = nm_toggle ? "#a8aaac" : "black";
 		document.getElementById("nm_unread").style.color = nm_toggle ? "black" : "#a8aaac";
 		document.getElementById("nm_count_all").style.backgroundColor = nm_toggle ? "#a8aaac" : "black";

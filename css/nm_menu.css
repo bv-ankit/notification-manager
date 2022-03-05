@@ -93,7 +93,7 @@
 	color: #a8aaac;
 }
 
-#no_new_notifications {
+#nm_no_new_notice {
 	margin-top: 50%;
 	color: #a8aaac;
 }
@@ -110,7 +110,7 @@
 	margin: 10px 20px 10px 20px;
 }
 
-#mark_as_read_button {
+#nm_mark_as_read {
 	float: right;
 	border: solid 1px transparent;
 	border-radius: 3px;
@@ -122,7 +122,7 @@
 	color: #355E3B;
 }
 
-#mark_as_read_button:hover {
+#nm_mark_as_read:hover {
 	border: solid 1px #097969;
 	background-color: white;
 }
