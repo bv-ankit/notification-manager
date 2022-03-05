@@ -128,7 +128,15 @@ window.addEventListener('load', function ()
 			}
 		}
 
-		nm_container.addEventListener("click", function(event) { mark_all_as_read(event); refresh_no_notice_state(); setTimeout(refresh_notification_numbers, 300); })
+		nm_container.addEventListener(
+			"click",
+			function(event) {
+				mark_all_as_read(event);
+				refresh_no_notice_state();
+				setTimeout(refresh_notification_numbers, 300);
+			}
+		)
+
 		refresh_no_notice_state();
 		refresh_notification_numbers();
 		setTimeout(nm_alert_for_notice, 15000);
