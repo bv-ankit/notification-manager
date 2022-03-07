@@ -81,3 +81,8 @@ function nm_add_hash_of_notices_to_db() {
 }
 
 add_action('wp_ajax_update_notification_option', 'nm_add_hash_of_notices_to_db');
+
+function deactivate_nm_plugin() {
+	delete_option("nm_hash_of_read_notices");
+}
+register_deactivation_hook(__FILE__, 'deactivate_nm_plugin');
