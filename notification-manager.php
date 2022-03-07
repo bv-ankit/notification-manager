@@ -14,7 +14,13 @@ if ( ! defined('ABSPATH') ) exit;
 
 if ( is_admin() ){
 
-	// delete_option("nm_hash_of_read_notices");
+	$nm_current_user = "";
+	function createUserName(){
+		global $nm_current_user;	
+	  $nm_current_user = wp_get_current_user()->user_nicename;
+	}
+	add_action('init','createUserName');
+
 	function nm_create_menu( $wp_admin_bar ) {
 		$wp_admin_bar->add_node(
 			array(
@@ -59,29 +65,34 @@ if ( is_admin() ){
 		echo '<div id="nm_notice_alert_box" ><img src="'.$nm_temp.'"> You have Unread Notifications';
 		echo '<span onClick=nm_hide()> &times </span> </div>';
 	}
-
 	add_action('admin_bar_menu', 'nm_create_menu', 999);
 
 	function nm_enqueue_notice_data() {
+		global $nm_current_user;
 		add_option('nm_hash_of_read_notices', array());
 		$nm_hash_of_read_notices = get_option('nm_hash_of_read_notices');
+		
 		wp_enqueue_style('nm_menu', plugin_dir_url(__FILE__) . 'css/nm_menu.css');
 		wp_enqueue_script('nm_md5_hash', plugin_dir_url( __FILE__ ) . 'js/md5.min.js', [], false, true ); 
 		wp_enqueue_script('nm_notice_data', plugin_dir_url( __FILE__ ) . 'js/nm_notice_data.js', [], false, true );
-		wp_localize_script('nm_notice_data', 'nm_hash_of_read_notices', $nm_hash_of_read_notices);
+		
+		if ( ! array_key_exists($nm_current_user, $nm_hash_of_read_notices) ) {
+			$nm_hash_of_read_notices[$nm_current_user] = array();
+			update_option('nm_hash_of_read_notices',$nm_hash_of_read_notices);
+		}
+		wp_localize_script('nm_notice_data', 'nm_hash_of_read_notices', $nm_hash_of_read_notices[$nm_current_user]);
 	}
-
 	add_action('admin_enqueue_scripts', 'nm_enqueue_notice_data');
 
 	function nm_add_hash_of_notices_to_db() {
+		global $nm_current_user;
 		if( isset( $_REQUEST ) ) {
 			$nm_notices_hash_data = $_REQUEST['nm_notices_hash_data'];
 			$nm_hash_of_read_notices = get_option('nm_hash_of_read_notices');
-			$nm_hash_of_read_notices = array_merge($nm_hash_of_read_notices, $nm_notices_hash_data);
+			$nm_hash_of_read_notices[$nm_current_user] = array_merge($nm_hash_of_read_notices[$nm_current_user], $nm_notices_hash_data);
 			update_option('nm_hash_of_read_notices', $nm_hash_of_read_notices);
 		}
 	}
-
 	add_action('wp_ajax_update_notification_option', 'nm_add_hash_of_notices_to_db');
 
 	function nm_delete_data_from_wp_options_on_deactivate() {
