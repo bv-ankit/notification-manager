@@ -6,20 +6,20 @@ window.addEventListener('load', function ()
 		let nm_hash_of_read_notices_json = JSON.stringify(nm_hash_of_read_notices);
 		
 		function nm_add_to_container( nm_notice ) {
-			
-			let nm_notice_hash = MD5( nm_notice.innerHTML );
+			let nm_notice_text = nm_notice.textContent.replaceAll(' ','');	
+			let nm_notice_text_with_dismis = nm_notice_text + 'Dismissthisnotice.';
+			let nm_notice_hash = MD5( nm_notice_text );
 			if ( nm_notice_hash == "d41d8cd98f00b204e9800998ecf8427e" ){ return; }
 			
 			nm_notice.classList.add("inline", "notice-alt", "nm-common");
 			nm_notice.style.visibility = "unset";
 
 			
-			if ( nm_hash_of_read_notices_json.includes( nm_notice_hash ) ) {
+			if ( nm_hash_of_read_notices_json.includes( nm_notice_hash ) || nm_hash_of_read_notices_json.includes( MD5(nm_notice_text_with_dismis) ) ) {
 				nm_container_all.appendChild(nm_notice);
 				nm_notice.classList.add("nm-seen");
 				return;
 			}
-
 			nm_container_unread.appendChild(nm_notice);
 		}
 
@@ -68,10 +68,11 @@ window.addEventListener('load', function ()
 	 		if ( nm_unread_notices.length > 0 ) {
 	 			let nm_hashes = [];
 	 			for( let nm_notice_idx = 0; nm_notice_idx < nm_unread_notices.length; nm_notice_idx++) {
-	 				nm_hashes.push( MD5( nm_unread_notices[nm_notice_idx].innerHTML ) );
+					let nm_unread_notice_without_spaces = nm_unread_notices[nm_notice_idx].textContent.replaceAll(' ','');
+	 				nm_hashes.push( MD5( nm_unread_notice_without_spaces  ) );
 	 				nm_unread_notices[nm_notice_idx].classList.add("nm-seen");
 	 				nm_container_all.appendChild(nm_unread_notices[nm_notice_idx]);
-	 			}
+				}
 
 	 			jQuery(document).ready(function($){             
                 	$.ajax({
