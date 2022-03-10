@@ -7,7 +7,7 @@ window.addEventListener('load', function ()
 		
 		function nm_add_to_container( nm_notice ) {
 			let nm_notice_text = nm_notice.textContent.replaceAll(' ','');	
-			let nm_notice_text_with_dismis = nm_notice_text + 'Dismissthisnotice.';
+			let nm_notice_hash_with_dismis = MD5(nm_notice_text + 'Dismissthisnotice.');
 			let nm_notice_hash = MD5( nm_notice_text );
 			if ( nm_notice_hash == "d41d8cd98f00b204e9800998ecf8427e" ){ return; }
 			
@@ -15,7 +15,7 @@ window.addEventListener('load', function ()
 			nm_notice.style.visibility = "unset";
 
 			
-			if ( nm_hash_of_read_notices_json.includes( nm_notice_hash ) || nm_hash_of_read_notices_json.includes( MD5(nm_notice_text_with_dismis) ) ) {
+			if ( nm_hash_of_read_notices_json.includes( nm_notice_hash ) || nm_hash_of_read_notices_json.includes( nm_notice_hash_with_dismis ) ) {
 				nm_container_all.appendChild(nm_notice);
 				nm_notice.classList.add("nm-seen");
 				return;
